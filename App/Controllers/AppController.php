@@ -8,7 +8,7 @@
         }
 
         public function dashboard() {
-            return view("home", [
+            return view("app.dashboard", [
                 "some" => ["data"=>true]
             ]);
         }

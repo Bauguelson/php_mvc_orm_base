@@ -1,6 +1,5 @@
 <?php
     function view(string $name, array $data = []) : string {
-        global $_GLOBALS;
         $name = str_replace(".","/",$name);
         $fileName = VIEWS."/$name.phtml";
         if(file_exists($fileName)) {
@@ -10,6 +9,20 @@
             $result = ob_get_clean();
             return $result;
         } else throw new Exception("View not found.");
+    }
+
+    function layout($name) {
+        $content = @ob_get_clean();
+        $name = str_replace(".","/",$name);
+        $fileName = VIEWS."/$name.phtml";
+        if(file_exists($fileName)) {
+            $extraction = extractScripts($content, "");
+            @$scripts.=$extraction["scripts"];
+            @$head.=$extraction["head"];
+            include($fileName);
+            $result = ob_get_clean();
+            return $result;
+        } else throw new Exception("Layout not found.");
     }
 
     function config($cfg, $default = null) {
