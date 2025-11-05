@@ -17,9 +17,11 @@
         $fileName = VIEWS."/$name.phtml";
         if(file_exists($fileName)) {
             $extraction = extractScripts($content, "");
-            @$scripts.=$extraction["scripts"];
-            @$head.=$extraction["head"];
+            $scripts=$extraction["scripts"];
+            $head=$extraction["head"];
+            extract($GLOBALS['layout']??[]);
             include($fileName);
+            unset($GLOBALS['layout']);
             $result = ob_get_clean();
             return $result;
         } else throw new Exception("Layout not found.");
