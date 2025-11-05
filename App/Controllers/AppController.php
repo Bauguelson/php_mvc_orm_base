@@ -9,7 +9,8 @@
 
         public function dashboard() {
             return view("app.dashboard", [
-                "some" => ["data"=>true]
+                "some" => ["data"=>true],
+                "custom" => "ok"
             ]);
         }
     }

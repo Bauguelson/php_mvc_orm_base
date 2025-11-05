@@ -1,10 +1,12 @@
 <div class="content">
     <!-- -->
+    <?= ($some["data"] ? "Yes" : "No"); ?>
+    <!-- -->
 </div>
 
 <?php $GLOBALS["layout"]["page_title"]  = "Home"; ?>
 <inchead>
-    <meta name="custom" content="ok">
+    <meta name="custom" content="<?= $custom ?>">
 </inchead>
 <script>
     console.log("ok");
