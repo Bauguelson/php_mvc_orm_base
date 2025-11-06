@@ -109,6 +109,8 @@
         public static function routeReq($req = null) : void {
             try {
                 $req = explode("/", filter_var(@$_GET["routeurl"], FILTER_SANITIZE_URL));
+                if(empty($req[0]) && count($req) > 1) $req = array_slice($req, 1);
+                unset($_GET["routeurl"]);
                 if(Language::urlHasLanguage()) {
                     $req = array_slice($req, 1);
                     self::setLanguage(Language::getLanguage());
